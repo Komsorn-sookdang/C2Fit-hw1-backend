@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  c2fit-hw:
+    container_name: c2fit-hw
+    # image: golang:1.14
+    environment:
+      MONGODB_URI: ${MONGODB_URI}
+    # volumes:
+    #   - ./volumes/app/data:/data
+    #   - ./volumes/app/pdf:/pdf
+    #   - ./volumes/app/log:/log
+    #   - ./go-app:/app/cantab
+    build: .
+    ports:
+      - 8080:8080
+    # working_dir: /app/cantab
+    # command: bash -c "go mod vendor && go run ./cmd/app/main.go"
+    # networks:
+    #   - backbone
+  
