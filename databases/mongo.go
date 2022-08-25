@@ -23,6 +23,9 @@ func ConnectToDatabase() {
 	}
 
 	uri := os.Getenv("MONGODB_URI")
+	if uri == "" {
+		log.Println("No MONGODB_URI")
+	}
 	clientOptions := options.Client().ApplyURI(uri)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
