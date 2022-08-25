@@ -34,7 +34,11 @@ func LoginSession(ctx *gin.Context, user *models.User) error {
 	session.Options(sessions.Options{
 		MaxAge: OneDay,
 	})
+	fmt.Println(user.Email)
 	session.Set("online", true)
+	session.Set("email", user.Email)
+	session.Set("firstName", user.Firstname)
+	session.Set("lastName", user.Lastname)
 	session.Set("userId", user.ID.Hex())
 	return session.Save()
 }
@@ -49,6 +53,19 @@ func GetUserId(ctx *gin.Context) string {
 	session := sessions.Default(ctx)
 	id := session.Get("userId")
 	return fmt.Sprintf("%v", id)
+}
+
+func GetUserEmail(ctx *gin.Context) string {
+	session := sessions.Default(ctx)
+	email := session.Get("email")
+	return fmt.Sprintf("%v", email)
+}
+
+func GetUserName(ctx *gin.Context) string {
+	session := sessions.Default(ctx)
+	firstName := session.Get("firstName")
+	lastName := session.Get("lastName")
+	return fmt.Sprintf("%v %v", firstName, lastName)
 }
 
 func LogoutSession(ctx *gin.Context) error {

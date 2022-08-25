@@ -92,8 +92,11 @@ func WhoAmI(c *gin.Context) {
 	if !session.HasLoggedIn(c) {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Not logged in"})
 	}
-	userID := session.GetUserId(c)
-	c.JSON(http.StatusOK, gin.H{"user": userID})
+	c.JSON(http.StatusOK, gin.H{
+		"userID": session.GetUserId(c),
+		"email":  session.GetUserEmail(c),
+		"name":   session.GetUserName(c),
+	})
 }
 
 func UserLogOut(c *gin.Context) {
