@@ -2,11 +2,14 @@
 
 how to run
 
-1. add .env file to your mongo db with format
-  export MONGODB_URI='<your mongo db uri>'
+First, add .env file to your mongo db with format.
 
-2. run command to get all dependencie
-  go mod tidy
+``` export MONGODB_URI='<your mongo db uri>'```
+
+Then, run command to get all dependencie
+
+``` go mod tidy```
   
-3. run main 
-  go run main/main.go
+Then, run main
+
+``` go run main/main.go```
